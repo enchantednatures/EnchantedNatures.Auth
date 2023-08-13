@@ -1,0 +1,50 @@
+[package]
+name = "enchanted_natures_auth"
+version = "0.1.0"
+edition = "2021"
+
+
+[[bin]] # Bin to run the HelloWorld gRPC server
+name = "server"
+path = "src/main.rs"
+
+[[bin]] # Bin to run the HelloWorld gRPC client
+name = "client"
+path = "src/client.rs"
+
+
+[dependencies]
+# jsonwebtoken = "8"
+anyhow = "1.0.72"
+async-trait = "0.1.72"
+aws-config = "0.55.3"
+aws-sdk-s3 = "0.28.0"
+chrono = { version = "0.4.26", features = ["serde"] }
+futures = "0.3"
+hyper = { version = "0.14.27", features = ["full"] }
+mockall = "0.11"
+prost = "0.11"
+serde = { version = "1.0.175", features = ["derive"] }
+serde_json = { version = "1.0.103" }
+tokio = { version = "1.29.1", features = ["full"] }
+tokio-util = { version = "0.7", features = ["io"] }
+tonic = "0.9"
+tower = { version = "0.4", features = ["util", "timeout"] }
+tower-http = { version = "0.4.3", features = ["add-extension", "trace"] }
+tracing = "0.1"
+tracing-bunyan-formatter = "0.3.8"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+utoipa = { version = "3.4.3", features = ["axum_extras", "chrono"] }
+utoipa-swagger-ui = { version = "3.1.4", features = ["axum"] }
+
+[dependencies.axum]
+version = "0.6.20"
+features = ["headers", "json", "multipart", "tracing" ]
+
+[dependencies.sqlx]
+version = "0.7.1"
+features = ["postgres", "runtime-tokio-rustls", "macros", "chrono", "uuid"]
+
+
+[build-dependencies]
+tonic-build = "0.9"
